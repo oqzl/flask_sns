@@ -1,0 +1,60 @@
+# 環境変数ファイル
+.env
+.env.*
+!.env.example
+
+# Python関連
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+.python-version
+
+# 仮想環境
+venv/
+ENV/
+.venv/
+
+# Flask関連
+instance/
+.webassets-cache
+flask_session/
+
+# データベース関連
+*.sqlite3
+*.db
+
+# IDE関連
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# ログファイル
+*.log
+
+# Docker関連
+.docker/
+docker-data/
+
+# キャッシュファイル
+.coverage
+.pytest_cache/
+.mypy_cache/
