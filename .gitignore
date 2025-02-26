@@ -35,6 +35,7 @@ ENV/
 instance/
 .webassets-cache
 flask_session/
+migrations/
 
 # データベース関連
 *.sqlite3
