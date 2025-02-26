@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}ホーム - Flask SNS{% endblock %}
+
+{% block content %}
+<div class="row">
+    <!-- プロフィールカード -->
+    <div class="col-md-3">
+        <div class="card mb-4">
+            <div class="card-body text-center">
+                <div class="mb-3">
+                    <div style="width: 100px; height: 100px; background-color: #6c757d; border-radius: 50%; color: white; display: flex; align-items: center; justify-content: center; font-size: 40px; margin: 0 auto;">
+                        {{ current_user.username[0].upper() }}
+                    </div>
+                </div>
+                <h5 class="card-title">@{{ current_user.username }}</h5>
+                <p class="card-text text-muted">
+                    {% if current_user.bio %}
+                        {{ current_user.bio }}
+                    {% else %}
+                        自己紹介はまだありません
+                    {% endif %}
+                </p>
+            </div>
+            <div class="card-footer text-muted">
+                登録日: {{ current_user.created_at.strftime('%Y年%m月%d日') }}
+            </div>
+        </div>
+    </div>
+
+    <!-- タイムライン -->
+    <div class="col-md-9">
+        <!-- 投稿フォーム (フロントエンドのみ) -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <form>
+                    <div class="mb-3">
+                        <textarea class="form-control" placeholder="いまどうしてる？" rows="3"></textarea>
+                    </div>
+                    <div class="text-end">
+                        <button type="button" class="btn btn-primary">投稿</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- 投稿一覧 -->
+        {% for post in posts %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="d-flex">
+                    <div class="me-3">
+                        <div style="width: 50px; height: 50px; background-color: #6c757d; border-radius: 50%; color: white; display: flex; align-items: center; justify-content: center; font-size: 20px;">
+                            {{ post.author.username[0].upper() }}
+                        </div>
+                    </div>
+                    <div>
+                        <h5 class="card-title mb-1">@{{ post.author.username }}</h5>
+                        <p class="card-text">{{ post.body }}</p>
+                        <p class="card-text text-muted small">{{ post.timestamp }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

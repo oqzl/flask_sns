@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}アカウント設定 - Flask SNS{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="mb-0">アカウント設定</h4>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-success">
+                    <p class="mb-0">メールアドレスの確認が完了しました。以下のフォームでユーザー名を設定してください。</p>
+                </div>
+                
+                <form method="POST" action="{{ url_for('auth.setup_account') }}">
+                    {{ form.hidden_tag() }}
+                    
+                    <div class="mb-3">
+                        {{ form.username.label(class="form-label") }}
+                        {{ form.username(class="form-control", placeholder="英数字とアンダースコアのみ使用可能") }}
+                        {% for error in form.username.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                        {% endfor %}
+                        <div class="form-text">ユーザー名は後から変更できません。慎重に選んでください。</div>
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        {{ form.submit(class="btn btn-primary") }}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
